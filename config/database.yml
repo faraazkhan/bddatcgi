@@ -1,0 +1,14 @@
+# Use 'createuser -s postgres' to create a general purpose db (super)user.
+
+development: &default
+  adapter: mysql2
+  database: bdd_helper_development
+  username: rails 
+  password: 
+  pool: 5
+  timeout: 5000
+
+test:
+  <<: *default
+  database: bdd_helper_test
+  min_messages: warning
