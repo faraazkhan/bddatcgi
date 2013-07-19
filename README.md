@@ -1,8 +1,6 @@
-# Bdd Helper
+# BDD @ CGI
 
-...
 
-Generated with [Raygun](https://github.com/carbonfive/raygun).
 
 # Requirements
 
@@ -20,7 +18,8 @@ After cloning, run these commands to install missing gems and prepare the databa
 
     $ gem install bundler
     $ bundle update
-    $ rake db:setup db:sample_data
+    $ rake db:setup 
+    
 
 Note, ```rake db:sample_data``` loads a small set of data for development. Check out ```db/sample_data.rb``` for details.
 
@@ -45,14 +44,4 @@ Guard is configured to run ruby and jasmine specs, and also listen for livereloa
 
     $ bundle exec guard
 
-### Deploying to Heroku
 
-Install the heroku toolbelt if you don't already have it (https://toolbelt.heroku.com/).
-
-    $ heroku apps:create bdd-helper
-    $ git push heroku master
-    $ heroku run rake db:setup
-
-# Considerations
-
-...
