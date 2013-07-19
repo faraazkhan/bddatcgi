@@ -27,10 +27,9 @@ class JiraAccount < ActiveRecord::Base
 
   end
 
-  def test_cases_for(issuekey)
-    issue =  find_story_by(issuekey)
-    if issue
-      test_cases = issue.issuelinks.select { |i| i["type"]["name"] == "Test Case" }
+  def test_cases_for(story)
+    if story
+      test_cases = story.issuelinks.select { |i| i["type"]["name"] == "Test Case" }
       test_cases.collect {|t| t["inwardIssue"]["key"] }
     else
       raise "No Test Cases Found"
@@ -39,13 +38,20 @@ class JiraAccount < ActiveRecord::Base
 
   def feature_file_for(issuekey)
     string = ''
-    test_cases_for(issuekey).each do |test_case_id|
-      tc = jira.Issue.find(test_case_id)  rescue nil
-      if tc
-        string << <<-STRING
-        #{tc.summary} \n
-        #{tc.description}\n\n
-        STRING
+    if story = find_story_by(issuekey)
+      string << <<-STORY
+      FEATURE: #{story.summary} \n
+      #{story.description} \n
+      #{story.customfield_10116} \n \n \n
+      STORY
+      test_cases_for(story).each do |test_case_id|
+        tc = jira.Issue.find(test_case_id)  rescue nil
+        if tc
+          string << <<-STRING
+          #{tc.summary} \n
+          #{tc.description}\n\n
+          STRING
+        end
       end
     end
     string
