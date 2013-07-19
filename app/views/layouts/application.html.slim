@@ -1,7 +1,7 @@
 doctype 5
 html
   head
-    title Bdd Helper
+    title BDD Helper
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tag
@@ -13,7 +13,8 @@ html
           nav.navbar-inner
             .container
               .brand 
-                = link_to 'CGI Bdd Helper ', root_url
+                = link_to image_tag('CGILogo.png', :size => '50x20'), root_url
+                'Experience BDD
               ul.nav.pull-right
                 - if current_user
                   li.dropdown
