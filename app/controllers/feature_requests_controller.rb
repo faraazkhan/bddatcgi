@@ -6,9 +6,14 @@ class FeatureRequestsController < ApplicationController
   def create
     @feature_request = FeatureRequest.new(params[:feature_request])
     if @feature_request.valid?
-      file = @jira_account.feature_file_for(@feature_request.issuekey)
-      send_data file, :filename => "#{@feature_request.issuekey}.txt", :type=>"text/plain", :x_sendfile=>true
-      flash[:notice] = "Status Message"
+      begin
+        file = @jira_account.feature_file_for(@feature_request.issuekey)
+        send_data file, :filename => "#{@feature_request.issuekey}.txt", :type=>"text/plain", :x_sendfile=>true
+        flash[:notice] = "Your file has been succesfully downloaded"
+      rescue
+        redirect_to new_user_jira_account_feature_request_path(@user, @jira_account)
+        flash[:error] = "No Test Cases were found. Please make sure you are entering the Issue Key for a User Story that has linked Test Cases in JIRA"
+      end
     else
       render action: 'new'
     end

@@ -3,6 +3,9 @@ class JiraAccount < ActiveRecord::Base
   attr_accessible :password, :username
   belongs_to :user
   validates_uniqueness_of :username, :scope => [:user_id]
+  validates_presence_of :password
+  validates_presence_of :username
+  validates :password, :with => :jira_credentials
 
   def jira
     @jira ||= JIRA::Client.new(credentials)
@@ -19,10 +22,19 @@ class JiraAccount < ActiveRecord::Base
     }
   end
 
+  def find_story_by(issuekey)
+    @issue ||= jira.Issue.find(issuekey) rescue nil
+
+  end
+
   def test_cases_for(issuekey)
-    issue = jira.Issue.find(issuekey)
-    test_cases = issue.issuelinks.select { |i| i["type"]["name"] == "Test Case" }
-    test_cases.collect {|t| t["inwardIssue"]["key"] }
+    issue =  find_story_by(issuekey)
+    if issue
+      test_cases = issue.issuelinks.select { |i| i["type"]["name"] == "Test Case" }
+      test_cases.collect {|t| t["inwardIssue"]["key"] }
+    else
+      raise "No Test Cases Found"
+    end
   end
 
   def feature_file_for(issuekey)
@@ -37,5 +49,9 @@ class JiraAccount < ActiveRecord::Base
       end
     end
     string
+  end
+
+  def jira_credentials
+    jira.Issuetype.all rescue errors[:username] << "Invalid username and /or password"
   end
 end
