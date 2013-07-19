@@ -1,5 +1,7 @@
 BddHelper::Application.routes.draw do
 
+
+
   root to: 'pages#root'
 
   match 'sign_in'  => 'user_sessions#new',     as: :sign_in
@@ -16,6 +18,10 @@ BddHelper::Application.routes.draw do
   match 'reset_password/:token' => 'password_resets#edit', via: :get,  as: :reset_password
   match 'reset_password/:id' => 'password_resets#update',  via: :put
 
-  resources :users
+  resources :users do
+    resources :jira_accounts do
+      resources :feature_requests, :only => [:create, :new]
+    end
+  end
 
 end

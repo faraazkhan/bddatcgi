@@ -12,7 +12,8 @@ html
         header.navbar.navbar-fixed-top
           nav.navbar-inner
             .container
-              .brand Bdd Helper
+              .brand 
+                = link_to 'CGI Bdd Helper ', root_url
               ul.nav.pull-right
                 - if current_user
                   li.dropdown
@@ -21,6 +22,7 @@ html
                       b.caret
                     ul.dropdown-menu
                       li= link_to 'Sign Out', sign_out_path
+                    li= link_to 'My Accounts', user_jira_accounts_path(current_user)
                 - else
                   li= link_to 'Sign In', sign_in_path
 

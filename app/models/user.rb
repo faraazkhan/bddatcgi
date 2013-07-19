@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password
+  has_many :jira_accounts
 
   authenticates_with_sorcery!
 
@@ -17,5 +18,9 @@ class User < ActiveRecord::Base
             presence: true,
             length: { minimum: 6 },
             if: :password
+
+  validates_format_of :email, :with => /^(.*)@cgifederal.com$/i, :message => 'is not a CGI Federal Email Address'
+
+  
 
 end

@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_path, alert: "Please sign in first."
   end
 
+  def load_user
+    @user = User.find_by_id params[:user_id]
+  end
+
 end

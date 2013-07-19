@@ -8,6 +8,9 @@ class Ability
       can :manage, :all
     else
       can [:read, :update], User, id: user.id
+      can :manage, JiraAccount, user_id: user.id
+      can :manage, FeatureRequest
+
     end
 
     # No one can destroy themselves.

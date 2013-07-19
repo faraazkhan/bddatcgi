@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128215337) do
+ActiveRecord::Schema.define(:version => 20130718210347) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20121128215337) do
     t.string   "uid",        :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "jira_accounts", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -34,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20121128215337) do
     t.datetime "last_login_at"
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"

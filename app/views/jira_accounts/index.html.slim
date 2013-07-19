@@ -1,0 +1,26 @@
+div.page-header
+  h1 Your JIRA Accounts 
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Username
+      th Actions
+
+  tbody
+  - @jira_accounts.each do |jira_account|
+    tr
+      td= link_to_if can?(:show, jira_account), jira_account.id, user_jira_accounts_path(current_user,jira_account)
+      td= jira_account.username
+      td
+        - if can? :edit, jira_account
+          = link_to 'Edit', edit_user_jira_account_path(current_user,jira_account), class: 'btn btn-mini'
+          '
+        - if can? :destroy, jira_account
+          = link_to 'Delete', user_jira_account_path(current_user,jira_account), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-mini btn-danger'
+          '
+          = link_to "Get Feature File", new_user_jira_account_feature_request_path(current_user, jira_account),class: 'btn btn-mini btn-info'
+
+- if can? :create, JiraAccount
+  = link_to 'New Jira account', new_user_jira_account_path, class: 'btn btn-primary'

@@ -1,0 +1,10 @@
+= simple_form_for([@user, @jira_account, @feature_request]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :issuekey, autofocus: true
+
+  .form-actions
+    = f.button :submit, 'Download Feature File', class: 'btn btn-primary'
+    '
+    = link_to 'Back', user_jira_accounts_path, class: 'btn'

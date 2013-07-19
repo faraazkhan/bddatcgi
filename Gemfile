@@ -24,6 +24,7 @@ group :assets do
   # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
   gem 'therubyracer'
   gem 'libv8', '~> 3.11.8'
+  gem 'jira-ruby'
 end
 
 group :test, :development do
@@ -39,6 +40,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'debugger'
 end
 
 group :development do

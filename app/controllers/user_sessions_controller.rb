@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
 
     if @user = login(@user_session.email, @user_session.password, @user_session.remember_me)
-      redirect_back_or_to :users, notice: "Successfully signed in."
+      redirect_back_or_to user_jira_accounts_path(@user), notice: "Successfully signed in."
     else
       flash.now[:alert] = "Sign in failed."
       render action: 'new'

@@ -1,14 +1,22 @@
-# Use 'createuser -s postgres' to create a general purpose db (super)user.
+<% APPLICATION_NAME = Rails.application.class.parent_name.downcase %>
+<% DB_TYPE='mysql2'%>
 
-development: &default
-  adapter: mysql2
-  database: bdd_helper_development
-  username: rails 
-  password: 
-  pool: 5
-  timeout: 5000
+common: &common
+ adapter: <%= DB_TYPE %>
+ encoding: utf8
+ reconnect: false
+ pool: 5
+ username: rails 
+ password: 
+
+development:
+ <<: *common
+ database: <%= APPLICATION_NAME + '_' + 'development' %>
 
 test:
-  <<: *default
-  database: bdd_helper_test
-  min_messages: warning
+ <<: *common
+ database: <%= APPLICATION_NAME + '_' + 'test' %>
+
+production:
+ <<: *common
+ database: <%= APPLICATION_NAME + '_' + 'production' %>

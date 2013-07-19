@@ -1,0 +1,12 @@
+= simple_form_for([@user, @jira_account]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :username, autofocus: true
+    = f.password_field :password
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    '
+    = link_to 'Back', user_jira_accounts_path, class: 'btn'
+
