@@ -15,4 +15,4 @@ if BASIC_AUTH_PASSWORD
   end
 end
 
-run BddHelper::Application
+run Bddatcgi::Application

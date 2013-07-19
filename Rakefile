@@ -4,7 +4,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BddHelper::Application.load_tasks
+Bddatcgi::Application.load_tasks
 
 # Disable schema.sql generation, unless we're in development.
 # http://stackoverflow.com/questions/12413306/error-when-doing-rake-dbmigrate-on-heroku

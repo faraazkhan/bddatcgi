@@ -14,7 +14,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module BddHelper
+module Bddatcgi
   class Application < Rails::Application
 
     config.generators do |generate|

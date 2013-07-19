@@ -1,4 +1,4 @@
-BddHelper::Application.routes.draw do
+Bddatcgi::Application.routes.draw do
 
 
 
