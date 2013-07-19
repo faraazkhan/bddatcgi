@@ -1,24 +1,10 @@
-# Populate the database with a small set of realistic sample data so that as a developer/designer, you can use the
-# application without having to create a bunch of stuff or pull down production data.
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# After running db:sample_data, a developer/designer should be able to fire up the app, sign in, browse data and see
-# examples of practically anything (interesting) that can happen in the system.
+# Examples:
 #
-# It's a good idea to build this up along with the features; when you build a feature, make sure you can easily demo it
-# after running db:sample_data.
-#
-# Data that is required by the application across all environments (i.e. reference data) should _not_ be included here.
-# That belongs in seeds.rb instead.
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# TODO Disable sending emails, no need for seed data.
-
-User.find_or_create_by_email('user@example.com') do |u|
-  u.name     = 'Ustead User'
-  u.password = 'password'
-end.activate!
-
-User.find_or_create_by_email('admin@example.com') do |u|
-  u.name     = 'Adam Admin'
-  u.password = 'password'
-  u.admin    = true
-end.activate!
+faraaz = User.create(name: "Faraaz Khan", password: "password", email: "mohammadfaraaz.yarkhan@cgifederal.com")
+faraaz.activate!
