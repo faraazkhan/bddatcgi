@@ -167,6 +167,8 @@ GEM
     mini_portile (0.5.1)
     morecane (0.1.0)
       cane (>= 2.1.0)
+    morrisjs-rails (0.4.3)
+      railties (> 3.1, < 5)
     multi_json (1.7.7)
     multipart-post (1.2.0)
     mysql2 (0.3.13)
@@ -213,6 +215,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
     rake (10.1.0)
+    raphael-rails (2.1.1)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
@@ -327,9 +330,11 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   mailcatcher
   morecane
+  morrisjs-rails
   mysql2
   quiet_assets
   rails (~> 3.2.13)
+  raphael-rails
   rb-fsevent
   rspec-rails
   simple_form

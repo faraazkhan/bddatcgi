@@ -25,6 +25,8 @@ group :assets do
   gem 'therubyracer'
   gem 'libv8', '~> 3.11.8'
   gem 'jira-ruby'
+  gem 'morrisjs-rails'
+  gem 'raphael-rails'
 end
 
 group :test, :development do
