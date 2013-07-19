@@ -1,15 +1,13 @@
-# Bdd Helper
+# BDD @ CGI
 
-...
 
-Generated with [Raygun](https://github.com/carbonfive/raygun).
 
 # Requirements
 
 To run the specs or fire up the server, be sure you have these:
 
 * Ruby 1.9.3-p392
-* PostgreSQL 9.x with superuser 'postgres' with no password (```createuser -s postgres```)
+* MySQL 5.x (create your own database.yml)
 * PhantomJS for JavaScript testing (```brew install phantomjs```)
 
 # Development
@@ -20,7 +18,8 @@ After cloning, run these commands to install missing gems and prepare the databa
 
     $ gem install bundler
     $ bundle update
-    $ rake db:setup db:sample_data
+    $ rake db:setup 
+    
 
 Note, ```rake db:sample_data``` loads a small set of data for development. Check out ```db/sample_data.rb``` for details.
 
@@ -45,14 +44,4 @@ Guard is configured to run ruby and jasmine specs, and also listen for livereloa
 
     $ bundle exec guard
 
-### Deploying to Heroku
 
-Install the heroku toolbelt if you don't already have it (https://toolbelt.heroku.com/).
-
-    $ heroku apps:create bdd-helper
-    $ git push heroku master
-    $ heroku run rake db:setup
-
-# Considerations
-
-...
