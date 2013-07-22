@@ -14,6 +14,7 @@ gem 'active_attr'
 gem 'valid_email'
 gem 'mysql2'
 gem 'awesome_print'
+gem 'attr_encrypted'
 
 group :assets do
   gem 'less-rails'
@@ -27,7 +28,6 @@ group :assets do
   gem 'jira-ruby'
   gem 'morrisjs-rails'
   gem 'raphael-rails'
-  gem 'attr_encrypted'
 end
 
 group :test, :development do
