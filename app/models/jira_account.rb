@@ -6,6 +6,7 @@ class JiraAccount < ActiveRecord::Base
   validates_presence_of :password
   validates_presence_of :username
   validates :password, :with => :jira_credentials
+  attr_encrypted :password, :key => :encryption_key
   URL= 'https://www.cws-cgicloud-apps.com:8443'
 
   def jira
@@ -68,6 +69,8 @@ class JiraAccount < ActiveRecord::Base
 
 
   def jira_credentials
+    puts jira
+    puts credentials
     jira.Issuetype.all rescue raise "Invalid username and /or password. If you think you have the right credentials, log out and log back into your JIRA web account"
   end
 
@@ -75,6 +78,11 @@ class JiraAccount < ActiveRecord::Base
       filename.gsub(/[^\w\s_-]+/, '')
               .gsub(/(^|\b\s)\s+($|\s?\b)/, '\\1\\2')
               .gsub(/\s+/, '_')
+  end
+
+  def encryption_key
+    created_date = self.new_record? ? Date.today : self.created_at.to_date 
+    Base64.encode64(created_date.to_s)
   end
   
 

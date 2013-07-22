@@ -27,6 +27,7 @@ group :assets do
   gem 'jira-ruby'
   gem 'morrisjs-rails'
   gem 'raphael-rails'
+  gem 'attr_encrypted'
 end
 
 group :test, :development do
